@@ -1,6 +1,6 @@
 
-import {Welcome} from './Welcome'
-import {FlowDesigner} from './FlowDesigner'
+import {Welcome} from './welcome/Welcome'
+import {FlowDesigner} from './flow-designer/FlowDesigner'
 
 export default {
     Welcome: {
