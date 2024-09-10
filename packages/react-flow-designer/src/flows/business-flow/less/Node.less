@@ -81,23 +81,48 @@
     top: -30px;
     height: 24px;
     visibility: hidden;
-    i {
-      margin-left: 5px;
-      padding: 0 4px;
+    display: flex;
+    flex-direction: row;
+
+    .node-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 2px;
+      padding: 4px;
       font-size: 16px;
       color: #ffffff;
-      line-height: 24px;
-      background: #bbbbbb;
+      background: #e0e0ea;
       border-radius: 4px;
       cursor: pointer;
     }
-    i:hover  {
+    .node-btn:hover  {
       background: #1584fa;
     }
   }
 }
+
 .xdb-flow-node-selected {
   .node-btns {
     visibility: visible;
+  }
+}
+
+.xdb-flow-node-menu {
+  .node-menu {
+    div {
+      padding: 0 6px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    div:hover {
+      background: var(--xdb-hover);
+    }
+  }
+  .node-menu-split {
+    margin: 10px 0;
+    height: 1px;
+    background: #1584fa;
+    overflow: hidden;
   }
 }

@@ -1,4 +1,7 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
+import { Popover } from 'antd';
+import {SvgIcon} from '@x-designer/react-components'
+import {NodeMenu} from './nodes/NodeMenu'
 
 const getLabel = (props, data) => {
     let str = data.label || props.label;
@@ -73,8 +76,8 @@ export const Node = (props) => {
     const {node, graph} = props;
     const [selected, setSelected] = useState(false);
 
-    const onSelectionChange = () => {
-
+    const onSelectionChange = ({ selected }) => {
+        setSelected(selected.length === 1 && selected[0].id === node.id);
     }
 
     const onAttrsChange = () => {
@@ -83,6 +86,23 @@ export const Node = (props) => {
 
     const onDataChange = () => {
 
+    }
+
+    const onCopy = () => {
+        graph.copy([node], {deep: true});
+        const {height} = node.size();
+        const nodes = graph.paste({offset: {dx: 0, dy: height + 10}});
+        if(node.parent) {
+            node.parent.addChild(nodes[0]);
+        }
+        graph.cleanSelection();
+    }
+
+    const onRemove = (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+        graph.removeNode(node);
+        return false;
     }
 
     useEffect(() => {
@@ -101,6 +121,10 @@ export const Node = (props) => {
     const headerStyle = getHeaderStyle(nodeProps, nodeAttrs);
     const titleStyle = getTitleStyle(nodeAttrs);
 
+    const isContainer = nodeProps.embedding;
+    const headerHeight = nodeAttrs?.header?.height || 30;
+    const content = (<NodeMenu node={node} isContainer={isContainer} headerHeight={headerHeight} />)
+
     return (
         <div className={nodeClass} style={nodeStyle}>
             <div className="node-header" style={headerStyle}>
@@ -110,6 +134,19 @@ export const Node = (props) => {
             </div>
             <div className="node-body">
                 { nodeData.summary && <div className="node-summary">{nodeData.summary}</div> }
+            </div>
+            <div className="node-btns">
+                <div className="node-btn" onClick={onCopy}>
+                    <SvgIcon name="copy" />
+                </div>
+                <div className="node-btn" onClick={onRemove}>
+                    <SvgIcon name="remove" />
+                </div>
+                <Popover content={content} placement="rightTop" trigger="click">
+                    <div className="node-btn">
+                        <SvgIcon name="menu" />
+                    </div>
+                </Popover>
             </div>
         </div>
     )
