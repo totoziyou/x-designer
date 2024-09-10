@@ -1,3 +1,6 @@
+
+@headerHeight: 40px;
+
 .x-framework {
   display: flex;
   flex-direction: column;
@@ -5,9 +8,10 @@
   height: 100%;
 }
 .x-framework-header {
-  height: 30px;
+  height: @headerHeight;
   font-size: 14px;
-  background: skyblue;
+  background: #d0dff1;
+  border-bottom: 1px solid #97b0c8;
 }
 .x-framework-body {
   flex: 1;
@@ -16,13 +20,13 @@
 .x-framework-menu {
   flex: 1;
   margin-left: 20px;
-  height: 30px;
+  height: @headerHeight;
   gap: 10px;
 }
 .x-framework-menu-item {
   padding: 0 10px;
-  height: 30px;
-  line-height: 30px;
+  height: @headerHeight;
+  line-height: @headerHeight;
   cursor: pointer;
   &:hover {
     background: #43a1c5;

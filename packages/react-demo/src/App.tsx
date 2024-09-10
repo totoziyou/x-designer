@@ -5,7 +5,7 @@ import './assets/css/common.less'
 
 const App = () => {
     return (
-        <Framework views={views} default={'FlowDesigner'} />
+        <Framework views={views} default={'BusinessFlow'} />
     )
 }
 
