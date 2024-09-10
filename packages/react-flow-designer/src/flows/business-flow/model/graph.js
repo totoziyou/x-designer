@@ -16,7 +16,7 @@ export function initDesignGraph(graphDomID, stencilDomId) {
     // 初始化画布
     const graph = new Graph({
         container: document.getElementById(graphDomID),
-        grid: true,
+        // grid: true,
         autoResize: true,
         // panning: true,
         mousewheel: {
@@ -108,7 +108,7 @@ export function initDesignGraph(graphDomID, stencilDomId) {
         .use(new Keyboard())
         .use(new Clipboard())
         .use(new History())
-        .use(new Scroller())
+        // .use(new Scroller())
 
     // 初始化 stencil
     const stencil = new Stencil({

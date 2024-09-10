@@ -1,0 +1,57 @@
+@import "Node";
+@import "X6Widget";
+@import "Guide";
+@import "Panel";
+
+:root {
+  --xdb-FontSansSerif: -apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC","WenQuanYi Micro Hei",sans-serif;
+  --xdb-FontMonospace: Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;
+  --xdb-bg: #f8f8fc;
+  //--xdb-bg: #dae4f4;
+  --xdb-bg-light: #f4f9ff;
+  --xdb-gray: #f6f6f6;
+  //--xdb-border: #b5c2d7;
+  --xdb-border: #a2c6f4;
+}
+
+.xdb-flow {
+  font-family: var(--xdb-FontSansSerif);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--xdb-bg);
+}
+
+.xdb-flow-header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  background: var(--xdb-bg-light);
+  border-bottom: 1px solid var(--xdb-border);
+}
+
+.xdb-flow-main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.xdb-flow-stencil {
+  position: relative;
+  width: 200px;
+  background: #ffffff;
+  //border-right: 1px solid var(--xdb-border);
+}
+
+.xdb-flow-graph {
+  flex: 1;
+  overflow: hidden;
+}
+
+.xdb-flow-side {
+  min-width: 300px;
+  background: #ffffff;
+  //border-left: 1px solid var(--xdb-border);
+}

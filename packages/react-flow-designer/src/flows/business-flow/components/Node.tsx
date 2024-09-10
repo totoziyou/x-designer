@@ -44,6 +44,14 @@ const getHeaderStyle = (props, attrs) => {
     return style;
 };
 
+const AlignValues = {
+    top: 'flex-start',
+    left: 'flex-start',
+    center: 'center',
+    bottom: 'flex-end',
+    right: 'flex-end'
+}
+
 const getTitleStyle = (attrs) => {
     let style = {};
     if(attrs) {
@@ -52,8 +60,8 @@ const getTitleStyle = (attrs) => {
             fontSize: text.fontSize + 'px',
             fontWeight: text.fontWeight || 'normal',
             color: text.fill,
-            alignItems: text.vAlign || 'flex-start',
-            justifyContent: text.hAlign || 'flex-start'
+            alignItems: AlignValues[text.vAlign] || 'flex-start',
+            justifyContent: AlignValues[text.hAlign] || 'flex-start'
         }
     }
     return style;
@@ -86,7 +94,7 @@ export const Node = (props) => {
     const nodeProps = node.getProp().props;
     const nodeAttrs = node.getAttrs();
     const nodeData: any = node.getData() || {};
-    const nodeClass = `xdr-flow-node ${selected ? 'xdr-flow-node-selected' : ''}`;
+    const nodeClass = `xdb-flow-node ${selected ? 'xdb-flow-node-selected' : ''}`;
     
     const label = getLabel(nodeProps, nodeData);
     const nodeStyle = getNodeStyle(nodeAttrs);

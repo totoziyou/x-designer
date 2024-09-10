@@ -1,5 +1,6 @@
 
-import FlowDesigner from './FlowDesigner'
-import './assets/css/FlowDesigner.less'
+import BusinessFlow from './flows/business-flow/BusinessFlow'
 
-export default FlowDesigner
+export default {
+    BusinessFlow
+}
