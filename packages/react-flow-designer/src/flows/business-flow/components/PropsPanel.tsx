@@ -1,14 +1,11 @@
 import React, {useRef, useState, useEffect} from 'react'
 import {SvgIcon} from '@x-designer/react-components'
+import {GlobalItemsEditor} from './prop-editors/GlobalItemsEditor'
 import {NodeBaseEditor} from './prop-editors/NodeBaseEditor'
 import {NodePositionEditor} from './prop-editors/NodePositionEditor'
 import {NodeStyleEditor} from './prop-editors/NodeStyleEditor'
 import {NodeTitleEditor} from './prop-editors/NodeTitleEditor'
 import {EdgeStyleEditor} from './prop-editors/EdgeStyleEditor'
-
-// import {PropsNode} from './PropsNode'
-// import {PropsEdge} from './PropsEdge'
-// import {PropsGlobal} from './PropsGlobal'
 
 export const PropsPanel = (props) => {
 
@@ -67,6 +64,11 @@ export const PropsPanel = (props) => {
     }
     else {
         title = '全局属性'
+        Props = (
+            <>
+                <GlobalItemsEditor model={model} />
+            </>
+        )
     }
 
     return (

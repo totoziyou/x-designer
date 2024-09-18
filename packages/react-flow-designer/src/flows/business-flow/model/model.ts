@@ -111,11 +111,26 @@ export default class BusinessFlowModel {
     }
 
     zoomFit = () => {
-        this.graph.zoomToFit({ padding: 20, maxScale: 10 })
+        this.graph.zoomToFit({ padding: 20, maxScale: 10 });
     }
 
     setCenter = () => {
         this.graph.centerContent();
     }
 
+    getItems = () => {
+        return this.graph.toJSON();
+    }
+
+    getNodes = () => {
+        return this.graph.getNodes();
+    }
+
+    getRootNodes = () => {
+        return this.graph.getNodes().filter(node => !node.parent);
+    }
+
+    selectItem = (item) => {
+        return this.graph.select(item);
+    }
 }
