@@ -1,5 +1,5 @@
 import React, {forwardRef, useState, useEffect} from 'react'
-import {SvgIcon} from '@x-designer/react-components'
+import {BiComponentItems} from '../../model/defines'
 
 export const ComponentsPanel = (props) => {
 
@@ -20,13 +20,7 @@ export const ComponentsPanel = (props) => {
         onClose();
     }
 
-    const items = [
-        {type:'image', label:'图片', defaultWidth: 200, defaultHeight: 200},
-        {type:'video', label:'视频', defaultWidth: 400, defaultHeight: 200},
-        {type:'stream', label:'流媒体', defaultWidth: 400, defaultHeight: 200}
-    ];
-
-    const widgets = items.map((item, idx) => {
+    const widgets = BiComponentItems.map((item, idx) => {
         return (
             <div
                 key={idx}

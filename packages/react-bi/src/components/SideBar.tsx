@@ -65,10 +65,10 @@ export const SideBar = (props) => {
                                 </div>
                             </div>
                             <div className="panel-body">
-                                { panelName === 'theme' && <ThemePanel model={model}/> }
-                                { panelName === 'layout' && <LayoutPanel model={model}/> }
-                                { panelName === 'views' && <ViewsPanel model={model}/> }
-                                { panelName === 'components' && <ComponentsPanel model={model} onHide={onExtHide} onClose={onExtClose}/> }
+                                { panelName === 'theme' && <ThemePanel model={model} /> }
+                                { panelName === 'layout' && <LayoutPanel model={model} /> }
+                                { panelName === 'views' && <ViewsPanel model={model} onHide={onExtHide} onClose={onExtClose} /> }
+                                { panelName === 'components' && <ComponentsPanel model={model} onHide={onExtHide} onClose={onExtClose} /> }
                             </div>
                         </div>
                     )
