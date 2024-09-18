@@ -15,22 +15,18 @@ export const MainView = (props) => {
         //     console.info('addItem', model.layout);
         //     setLayout(model.layout);
         // })
-        model.on('moveItem', (item) => {
-            console.info('moveItem', item);
+        model.on('itemsChanged', (item) => {
+            console.info('itemsChanged', item);
             setLayout(model.layout);
         })
-        // setTimeout(() => {
-        //     const newLayout = [
-        //         ...layout,
-        //         { i: "d", x: 10, y: 5, w: 1, h: 2 }
-        //     ]
-        //     console.info('layout', newLayout);
-        //     setLayout(newLayout);
-        // }, 5000)
+        model.on('moveItem', (item) => {
+            // console.info('moveItem', item);
+            setLayout(model.layout);
+        })
     }, []);
 
     const onLayoutChange = (layout) => {
-        console.info('---', layout);
+        // console.info('---onLayoutChange', layout);
     }
     
     const onDropDragOver = (evt) => {
@@ -38,6 +34,7 @@ export const MainView = (props) => {
     }
 
     const onDragOver = (evt) => {
+        evt.preventDefault();
         const {clientX, clientY, currentTarget} = evt;
         const {x, y, width} = currentTarget.getBoundingClientRect();
         model.dragOver({
@@ -46,6 +43,11 @@ export const MainView = (props) => {
             max: width,
         });
         // model.dragOver(evt);
+    }
+
+    const onDrop = (evt) => {
+        console.info('onDrop ---------');
+        model.drop();
     }
 
     const items = layout.map(item => {
@@ -57,12 +59,12 @@ export const MainView = (props) => {
         )
     });
 
-    console.info('render', layout);
+    // console.info('render', layout);
 
     const {cols, rowHeight, margin, containerWidth} = model.config;
 
     return (
-        <div className="xdbi-designer-main" onDragOver={onDragOver}>
+        <div className="xdbi-designer-main" onDragOver={onDragOver} onDrop={onDrop}>
             <div className="xdbi-designer-absLayout">
                 {/*<div className="absLayout-item" style={{left:300, top:300}}></div>*/}
             </div>

@@ -3,7 +3,7 @@ import {EventBus, uuid} from '@x-designer/utils'
 export default class BiItemModel {
 
     id: string;
-    type: string;
+    name: string;
     x: number;
     y: number;
     width: number;
@@ -12,20 +12,28 @@ export default class BiItemModel {
     maxWidth: number;
     isLocked: boolean;
 
+    data: any;
+
     isDummy: boolean;
     sourceItem: any;
 
     constructor(sourceItem, isDummy = false) {
-        const {type, x, y, w, h, defaultWidth, defaultHeight} = sourceItem;
+        const {name, x, y, w, h, defaultWidth, defaultHeight, data} = sourceItem;
+        console.info('new item', sourceItem)
         this.id = uuid();
         this.sourceItem = sourceItem;
-        this.type = type;
+        this.name = name;
         this.isLocked = false;
         this.isDummy = isDummy;
         this.x = x || 0;
         this.y = y || 0;
         this.width = w || 1;
         this.height = h || 1;
+        this.data = data || {};
+    }
+
+    getWidget() {
+        return this.sourceItem.component;
     }
 
     getLayout() {
@@ -46,6 +54,10 @@ export default class BiItemModel {
     moveTo(pos) {
         this.x = pos.x;
         this.y = pos.y;
+    }
+
+    drop() {
+        this.isDummy = false;
     }
 
 }

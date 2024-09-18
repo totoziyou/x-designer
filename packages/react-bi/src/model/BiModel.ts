@@ -74,6 +74,13 @@ export default class BiModel {
         return [...this.layoutItems];
     }
 
+    clearDrag() {
+        this.dragMode = null;
+        this.dragSourceItem = null;
+        this.dragOffsetPos = null;
+        this.dragItem = null;
+    }
+
     dragNewStart(item, offsetPos) {
         this.dragMode = 'addNew';
         const {defaultWidth, defaultHeight} = item;
@@ -85,10 +92,21 @@ export default class BiModel {
     }
 
     dragEnd() {
-        this.dragMode = null;
-        this.dragSourceItem = null;
-        this.dragOffsetPos = null;
-        this.dragItem = null;
+        let needRefresh = false;
+        this.items = this.items.filter((item, idx) => {
+            if(item.isDummy) {
+                needRefresh = true;
+                return false;
+            }
+            return true;
+        });
+        this.layoutItems = this.items.map(item => {
+            return item.getLayout();
+        });
+        this.clearDrag();
+        if(needRefresh) {
+            this.emit('itemsChanged');
+        }
     }
 
     dragOver(evt) {
@@ -106,6 +124,10 @@ export default class BiModel {
                 this.addItem({x, y, w: 2, h: 4 });
             }
         }
+    }
+
+    drop() {
+        this.dragItem.drop();
     }
 
     getItem(id) {
