@@ -1,16 +1,7 @@
+import {registerWidgets} from '../model/defines'
+import Undefined from "./Undefined"
+import Image from './Image'
 
-import Undefined from "./Undefined";
-import Image from './Image';
 
-export const BiWidgets: any = {};
-
-export const RegisterWidgets = (widgetConfig) => {
-    BiWidgets[widgetConfig.type] = widgetConfig;
-}
-
-export const getWidget = (type) => {
-    return BiWidgets[type] || BiWidgets.default;
-}
-
-RegisterWidgets(Undefined);
-RegisterWidgets(Image);
+registerWidgets(Undefined);
+registerWidgets(Image);

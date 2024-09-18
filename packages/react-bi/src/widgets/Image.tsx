@@ -12,6 +12,11 @@ const Image = (props) => {
 }
 
 export default {
-    type: 'image',
+    name: 'image',
+    type: 'component',
+    categoryPath: '',
+    label: '图片',
+    defaultWidth: 200,
+    defaultHeight: 200,
     component: Image,
 }

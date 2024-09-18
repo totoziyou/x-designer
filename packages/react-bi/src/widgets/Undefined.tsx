@@ -14,6 +14,10 @@ const Undefined = (props) => {
 }
 
 export default {
-    type: 'default',
+    name: 'default',
+    type: 'none',
+    label: '未定义',
+    defaultWidth: 200,
+    defaultHeight: 300,
     component: Undefined,
 }
