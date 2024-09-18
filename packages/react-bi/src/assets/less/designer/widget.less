@@ -1,0 +1,31 @@
+
+.xdbi-widget-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    .xdbi-widget-menu {
+      display: flex;
+    }
+  }
+}
+
+.xdbi-widget {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.xdbi-widget-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: -30px;
+  width: 30px;
+  background: #ffffff;
+}

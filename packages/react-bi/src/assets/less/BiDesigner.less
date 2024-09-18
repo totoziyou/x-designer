@@ -1,0 +1,44 @@
+@import "common";
+@import "designer/side";
+@import "designer/widget";
+
+.xdbi-designer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.xdbi-designer-header {
+  height: 50px;
+  border-bottom: 1px solid var(--xdbi-border);
+}
+
+.xdbi-designer-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.xdbi-designer-navbar {
+
+}
+
+.xdbi-designer-main {
+  position: relative;
+  flex: 1;
+  background: #f8f8fc;
+}
+
+.xdbi-designer-absLayout {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 100;
+  .absLayout-item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: orange;
+  }
+}
