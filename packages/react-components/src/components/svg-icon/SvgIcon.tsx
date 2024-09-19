@@ -3,7 +3,7 @@ import {SvgMap} from './svg-map'
 
 export const SvgIcon = (props) => {
 
-    const icon = SvgMap[props.name] || SvgMap.default;
+    const icon = props.config || SvgMap[props.name] || SvgMap.default;
     const size = props.size || 20;
 
     let paths;
