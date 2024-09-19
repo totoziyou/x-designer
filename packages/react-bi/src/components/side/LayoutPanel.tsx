@@ -41,8 +41,8 @@ export const LayoutPanel = (props) => {
                     <PropsSize title="上下边距" value={containerPadding[1]} min={0} onChange={(val) => onSetContainerPadding(1, val)} />
                     <PropsSize title="栅格数" value={cols} min={24} onChange={(val) => onSet({cols: val})} />
                     <PropsSize title="行高" value={rowHeight} min={30} onChange={(val) => onSet({rowHeight: val})} />
-                    <PropsSize title="行间距" value={margin[0]} min={0} onChange={(val) => onSetMargin(0, val)} />
-                    <PropsSize title="列间距" value={margin[1]} min={0} onChange={(val) => onSetMargin(1, val)} />
+                    <PropsSize title="列间距" value={margin[0]} min={0} onChange={(val) => onSetMargin(0, val)} />
+                    <PropsSize title="行间距" value={margin[1]} min={0} onChange={(val) => onSetMargin(1, val)} />
                 </div>
             </div>
             <div className="layout-group">

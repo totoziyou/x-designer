@@ -24,7 +24,7 @@ export const MainView = (props) => {
 
     const onLayoutChange = (layout) => {
         console.info('---onLayoutChange', layout);
-        model.setUiLayout(layout);
+        model.setGridLayout(layout);
     }
     
     const onDropDragOver = (evt) => {

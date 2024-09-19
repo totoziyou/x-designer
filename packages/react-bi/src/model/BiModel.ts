@@ -3,7 +3,10 @@ import {EventBus} from '@x-designer/utils'
 import BiItemModel from "./BiItemModel";
 
 type BiModelOptions = {
-    gridLayoutConfig?: any
+    theme?: string;
+    gridLayoutConfig?: any;
+    items: any[];
+    getDataSource: Function;
 }
 
 const DefaultGridLayoutConfig = {
@@ -33,10 +36,10 @@ export default class BiModel {
     items: Array<any>;
     itemsMap: any;
 
-    constructor(options:BiModelOptions = {}, data = []) {
-        const {gridLayoutConfig} = options;
+    constructor(options:BiModelOptions) {
+        const {theme, gridLayoutConfig, getDataSource, items = []} = options;
         this._initGridLayoutConfig(gridLayoutConfig);
-        this._initData(data);
+        this._initItems(items);
         this._initEventBus();
     }
 
@@ -47,7 +50,7 @@ export default class BiModel {
         }
     }
 
-    _initData(data) {
+    _initItems(data) {
         this.itemsMap = {};
         this.items = data.map(item => {
             const itemModel = new BiItemModel(this, item, false);
@@ -81,13 +84,13 @@ export default class BiModel {
         this.emit('gridLayoutConfigChanged', this.gridLayoutConfig)
     }
 
-    setUiLayout(items) {
+    setGridLayout(items) {
         if(this.dragMode) {
             this.draglayouts = items;
         }
         else {
             items.forEach(item => {
-                this.itemsMap[item.i].moveTo(item);
+                this.itemsMap[item.i].setGridLayout(item);
             })
         }
     }
@@ -170,8 +173,8 @@ export default class BiModel {
         return this.itemsMap[id];
     }
 
-    addItem(pos, isDummy=false) {
-        const newItem = new BiItemModel(this, pos, isDummy);
+    addItem(item, isDummy=false) {
+        const newItem = new BiItemModel(this, item, isDummy);
         this.dragItem = newItem;
         this.items.push(newItem);
         this.itemsMap[newItem.id] = newItem;
@@ -209,7 +212,12 @@ export default class BiModel {
     }
 
     toJson() {
-        return this.items.map(item => item.toJson());
+        const items = this.items.map(item => item.toJson());
+        return {
+            theme: 'light',
+            gridLayoutConfig: this.gridLayoutConfig,
+            items,
+        }
     }
 
 }

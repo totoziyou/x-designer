@@ -1,4 +1,5 @@
 import {EventBus, uuid} from '@x-designer/utils'
+import {BiWidgets} from './defines'
 
 export default class BiItemModel {
 
@@ -7,7 +8,6 @@ export default class BiItemModel {
     data: any;
 
     id: string;
-    name: string;
     gridLayout: any;
     isLocked: boolean;
     isDummy: boolean;
@@ -17,20 +17,37 @@ export default class BiItemModel {
     off:Function;
     emit: Function;
 
-    constructor(designer, sourceItem, isDummy = false) {
-        const {name, x=0, y=0, w, h, minW, minH, maxW, maxH, data} = sourceItem;
+    constructor(designer, itemData, isDummy = false) {
         this.designer = designer;
+        this.isDummy = isDummy;
+        if(isDummy) {
+            this._initDummy(itemData);
+        }
+        else {
+            this._initData(itemData);
+        }
+        this._initEventBus();
+    }
+
+    _initData(itemData) {
+        const {id, widget, gridLayout, isLocked, data} = itemData;
+        this.id = id;
+        this.sourceItem = BiWidgets[widget];
+        this.isLocked = isLocked;
+        this.gridLayout = gridLayout;
+        this.data = data || {};
+    }
+
+    _initDummy(sourceItem) {
+        const {x=0, y=0, w, h, minW, minH, maxW, maxH, data} = sourceItem;
         this.id = uuid();
         this.sourceItem = sourceItem;
-        this.name = name;
         this.isLocked = false;
-        this.isDummy = isDummy;
         this.gridLayout = {
             i: this.id,
             x, y, w, h, minW, minH, maxW, maxH
         };
         this.data = data || {};
-        this._initEventBus();
     }
 
     _initEventBus() {
@@ -54,6 +71,14 @@ export default class BiItemModel {
 
     getExtMenus() {
         return this.sourceItem.extMenus || [];
+    }
+
+    setGridLayout(data) {
+        const {x, y, w, h} = data;
+        this.gridLayout.x = x;
+        this.gridLayout.y = y;
+        this.gridLayout.w = w;
+        this.gridLayout.h = h;
     }
 
     moveTo(pos) {
@@ -91,6 +116,7 @@ export default class BiItemModel {
     toJson() {
         return {
             id: this.id,
+            widget: this.sourceItem.name,
             gridLayout: this.gridLayout,
             isLocked: this.isLocked,
             data: this.data,
