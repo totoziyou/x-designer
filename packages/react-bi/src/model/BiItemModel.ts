@@ -73,6 +73,17 @@ export default class BiItemModel {
         return this.sourceItem.extMenus || [];
     }
 
+    getGridPos() {
+        const {cols} = this.designer.gridLayoutConfig;
+        const {x, w} = this.gridLayout;
+        if(x === 0) {
+            return (w === cols) ? 'full' : 'left';
+        }
+        else {
+            return (x + w === cols) ? 'right' : 'free'
+        }
+    }
+
     setGridLayout(data) {
         const {x, y, w, h} = data;
         this.gridLayout.x = x;

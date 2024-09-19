@@ -28,6 +28,9 @@ export const ItemMenu = (props) => {
         model.remove();
     }
 
+    const pos = model.getGridPos();
+    const menuClass = `xdbi-widget-menu xdbi-widget-menu-${pos}`
+
     const extMenus = model.getExtMenus().map(menu => {
         return (
             <div key={menu.name} className="menu-item" onClick={(evt) => onAction(menu, evt)} onMouseDown={onMouseDown}>
@@ -37,7 +40,7 @@ export const ItemMenu = (props) => {
     });
 
     return (
-        <div className="xdbi-widget-menu">
+        <div className={menuClass}>
             <div className="menu-item" onClick={onCopy} onMouseDown={onMouseDown}>
                 <SvgIcon name="copy" />
             </div>

@@ -27,11 +27,7 @@
 
 .xdbi-widget-menu {
   display: none;
-  flex-direction: column;
   position: absolute;
-  top: 0;
-  right: -30px;
-  width: 30px;
   background: #ffffff;
   z-index: 300;
 
@@ -41,9 +37,48 @@
     justify-content: center;
     width: 26px;
     height: 26px;
-    margin-left: 4px;
-    margin-bottom: 4px;
     background: orange;
     cursor: pointer;
+  }
+}
+
+.xdbi-widget-menu-left, .xdbi-widget-menu-free {
+  flex-direction: column;
+  top: 0;
+  right: -30px;
+  width: 30px;
+  .menu-item {
+    margin-left: 4px;
+    margin-bottom: 4px;
+  }
+  .menu-item:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.xdbi-widget-menu-right {
+  flex-direction: column;
+  top: 0;
+  left: -30px;
+  width: 30px;
+  .menu-item {
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .menu-item:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.xdbi-widget-menu-full {
+  flex-direction: row;
+  top: -30px;
+  right: 0;
+  .menu-item {
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .menu-item:last-child {
+    margin-right: 0;
   }
 }
