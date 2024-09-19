@@ -31,6 +31,7 @@ export const ViewsPanel = (props) => {
                 onDrag={onHide}
                 onDragEnd={onDragEnd}
             >
+                <SvgIcon config={item.iconConfig} />
                 {item.label}
             </div>
         )
