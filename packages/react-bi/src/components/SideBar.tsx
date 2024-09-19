@@ -6,10 +6,10 @@ import {ViewsPanel} from './side/ViewsPanel'
 import {ComponentsPanel} from './side/ComponentsPanel'
 
 const Bi_SideMenus = [
-    {name: 'theme', label: '主题', icon: 'bi_theme', panelTitle: '主题设置'},
-    {name: 'layout', label: '布局', icon: 'bi_layout', panelTitle: '布局设置'},
-    {name: 'views', label: '视图', icon: 'bi_views', panelTitle: '视图组件'},
-    {name: 'components', label: '组件', icon: 'bi_components', panelTitle: '小组件'}
+    {name: 'theme', label: '主题', icon: 'bi_theme', width: 200, panelTitle: '主题设置'},
+    {name: 'layout', label: '布局', icon: 'bi_layout', width: 260, panelTitle: '布局设置'},
+    {name: 'views', label: '视图', icon: 'bi_views', width: 200, panelTitle: '视图组件'},
+    {name: 'components', label: '组件', icon: 'bi_components', width: 200, panelTitle: '小组件'}
 ]
 
 export const SideBar = (props) => {
@@ -61,7 +61,7 @@ export const SideBar = (props) => {
             <div className="xdbi-designer-side-ext" style={panelStyle}>
                 {
                     panel && (
-                        <div className="xdbi-designer-side-panel" style={{width: 200}}>
+                        <div className="xdbi-designer-side-panel" style={{width: panel.width}}>
                             <div className="panel-header">
                                 <span>{panel.panelTitle}</span>
                                 <div className="panel-close-btn" onClick={onExtClose}>

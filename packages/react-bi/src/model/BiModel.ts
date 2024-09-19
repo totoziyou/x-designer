@@ -73,6 +73,14 @@ export default class BiModel {
         });
     }
 
+    setGridLayoutConfig(config) {
+        this.gridLayoutConfig = {
+            ...this.gridLayoutConfig,
+            ...config,
+        }
+        this.emit('gridLayoutConfigChanged', this.gridLayoutConfig)
+    }
+
     setUiLayout(items) {
         if(this.dragMode) {
             this.draglayouts = items;

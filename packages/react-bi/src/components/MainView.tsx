@@ -10,11 +10,15 @@ export const MainView = (props) => {
     const {model} = props;
 
     const [layout, setLayout] = useState(model.layout);
+    const [config, setConfig] = useState(model.config);
     
     useEffect(() => {
         model.on('itemsChanged', (item) => {
             // console.info('itemsChanged', item);
             setLayout(model.layout);
+        })
+        model.on('gridLayoutConfigChanged', newConfig => {
+            setConfig(newConfig)
         })
     }, []);
 
@@ -38,19 +42,19 @@ export const MainView = (props) => {
 
     // console.info('render', layout);
 
-    const {cols, rowHeight, margin, containerWidth} = model.config;
-
     return (
         <div className="xdbi-designer-main">
             <div className="xdbi-designer-absLayout">
                 {/*<div className="absLayout-item" style={{left:300, top:300}}></div>*/}
             </div>
             <GridLayout
+                className="xdbi-designer-gridLayout"
+                style={{width: config.containerWidth}}
                 layout={layout}
-                cols={cols}
-                rowHeight={rowHeight}
-                width={containerWidth}
-                margin={margin}
+                cols={config.cols}
+                rowHeight={config.rowHeight}
+                width={config.containerWidth}
+                margin={config.margin}
                 compactType='vertical'
                 useCSSTransforms
                 isDraggable
