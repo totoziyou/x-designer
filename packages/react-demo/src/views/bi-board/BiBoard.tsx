@@ -1,20 +1,38 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import BI from '@x-designer/react-bi'
+import {dataList, getDataSource} from "./data-utils";
 import './BiBoard.less'
 
 export const BiBoard = () => {
 
+    const [data, setData] = useState(dataList[0]);
+    
+    const listItems = dataList.map(item => {
+        return (
+            <div key={item.id} className='xbi-board-list-item' onClick={() => setData(item)}>
+                {item.label}
+            </div>
+        )
+    });
+
     return (
         <div className="x-framework-page xbi-board">
-            <div className="xb-flow-header">
+            <div className="xbi-board-header">
                 BI数据可视化
             </div>
-            <div className="xb-flow-body">
-                <div className="xb-flow-list">
-                    <div className="xb-flow-list-header">Board列表</div>
+            <div className="xbi-board-body">
+                <div className="xbi-board-list">
+                    <div className="xbi-board-list-header">Board列表</div>
+                    <div>
+                        {listItems}
+                    </div>
                 </div>
-                <div className="xb-flow-designer">
-                    <BI.BiDesigner />
+                <div className="xbi-board-designer">
+                    <BI.BiDesigner
+                        key={data.id}
+                        data={data.data}
+                        getDataSource={getDataSource}
+                    />
                 </div>
             </div>
         </div>
