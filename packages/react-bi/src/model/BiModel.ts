@@ -28,9 +28,9 @@ export default class BiModel {
     dragSourceItem = null;
     dragOffsetPos = null;
     dragItem = null;
+    draglayouts: Array<any>;
 
     items: Array<any>;
-    layoutItems: Array<any>;
     itemsMap: any;
 
     constructor(options:BiModelOptions = {}, data = []) {
@@ -50,12 +50,9 @@ export default class BiModel {
     _initData(data) {
         this.itemsMap = {};
         this.items = data.map(item => {
-            const itemModel = new BiItemModel(item, false);
+            const itemModel = new BiItemModel(this, item, false);
             this.itemsMap[itemModel.id] = itemModel;
             return itemModel;
-        });
-        this.layoutItems = this.items.map(item => {
-            return item.getLayout();
         });
     }
 
@@ -71,7 +68,20 @@ export default class BiModel {
     }
 
     get layout() {
-        return [...this.layoutItems];
+        return this.items.map(item => {
+            return item.getLayout();
+        });
+    }
+
+    setUiLayout(items) {
+        if(this.dragMode) {
+            this.draglayouts = items;
+        }
+        else {
+            items.forEach(item => {
+                this.itemsMap[item.i].moveTo(item);
+            })
+        }
     }
 
     clearDrag() {
@@ -79,16 +89,32 @@ export default class BiModel {
         this.dragSourceItem = null;
         this.dragOffsetPos = null;
         this.dragItem = null;
+        this.draglayouts = null;
     }
 
     dragNewStart(item, offsetPos) {
         this.dragMode = 'addNew';
-        const {defaultWidth, defaultHeight} = item;
-        const {w, h} = calculateUtils.calcWH(this.gridLayoutConfig, defaultWidth, defaultHeight, 0, 0);
-        console.info('addSize', w, h);
-        this.addItem({...item, w, h}, true);
+        const {cols, rowHeight} = this.gridLayoutConfig;
+        const {defaultWidth, defaultHeight, minWidth, minHeight, maxWidth, maxHeight} = item;
+        const size = calculateUtils.calcWH(this.gridLayoutConfig, defaultWidth, defaultHeight, 0, 0);
+        const itemClone = {
+            ...item,
+            ...size,
+        }
+        if(minWidth || minHeight) {
+            const minSize = calculateUtils.calcWH(this.gridLayoutConfig, minWidth || cols, minHeight || rowHeight, 0, 0);
+            if(minWidth) itemClone.minW = minSize.w;
+            if(minHeight) itemClone.minH = minSize.h;
+        }
+        if(maxWidth || maxHeight) {
+            const maxSize = calculateUtils.calcWH(this.gridLayoutConfig, maxWidth || cols, maxHeight || rowHeight, 0, 0);
+            if(maxWidth) itemClone.maxW = maxSize.w;
+            if(maxHeight) itemClone.maxH = maxSize.h;
+        }
+        this.addItem(itemClone, true);
         this.dragSourceItem = item;
         this.dragOffsetPos = offsetPos;
+        this.emit('dragNewStart');
     }
 
     dragEnd() {
@@ -100,10 +126,11 @@ export default class BiModel {
             }
             return true;
         });
-        this.layoutItems = this.items.map(item => {
-            return item.getLayout();
+        this.draglayouts.forEach(item => {
+            this.itemsMap[item.i].moveTo(item);
         });
         this.clearDrag();
+        this.emit('dragEnd');
         if(needRefresh) {
             this.emit('itemsChanged');
         }
@@ -128,6 +155,7 @@ export default class BiModel {
 
     drop() {
         this.dragItem.drop();
+        this.emit('drop');
     }
 
     getItem(id) {
@@ -135,20 +163,29 @@ export default class BiModel {
     }
 
     addItem(pos, isDummy=false) {
-        const newItem = new BiItemModel(pos, isDummy);
+        const newItem = new BiItemModel(this, pos, isDummy);
         this.dragItem = newItem;
         this.items.push(newItem);
-        this.layoutItems.push(newItem.getLayout());
         this.itemsMap[newItem.id] = newItem;
         this.emit('addItem');
     }
 
     moveItem(item, pos) {
         item.moveTo(pos);
-        this.layoutItems = this.items.map(item => {
-            return item.getLayout();
-        });
-        this.emit('moveItem', item);
+        this.emit('itemsChanged', {type: 'move', data: [item]});
+    }
+
+    removeItem(itemId) {
+        const idx = this.items.findIndex(item => item.id === itemId);
+        if(idx > -1) {
+            this.items.splice(idx, 1);
+            delete this.itemsMap[itemId];
+            this.emit('itemsChanged', {type: 'remove'});
+        }
+    }
+
+    itemChanged(type, data) {
+        this.emit('itemsChanged', {type, data});
     }
 
     transComponentPos() {
@@ -161,6 +198,10 @@ export default class BiModel {
 
     transToGridPos() {
 
+    }
+
+    toJson() {
+        return this.items.map(item => item.toJson());
     }
 
 }

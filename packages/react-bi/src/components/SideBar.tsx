@@ -20,6 +20,10 @@ export const SideBar = (props) => {
 
     const panelName = panel && panel.name
     const panelStyle: any = panel ? {display:'block'} : {}
+    if(isHide) {
+        panelStyle.width = 0;
+        panelStyle.overflow = 'hidden';
+    }
 
     const onExtOpen = (menu) => {
         setPanel(menu);
