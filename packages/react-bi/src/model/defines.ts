@@ -7,6 +7,7 @@ export type BiWidget = {
     defaultWidth: number;
     defaultHeight: number;
     component: any;
+    extMenus?: Array<any>
     [key: string]: any;
 }
 
