@@ -1,4 +1,5 @@
 import React, {forwardRef, useState, useEffect} from 'react'
+import {SvgIcon} from '@x-designer/react-components'
 import {BiComponentItems} from '../../model/defines'
 
 export const ComponentsPanel = (props) => {
@@ -30,7 +31,8 @@ export const ComponentsPanel = (props) => {
                 onDrag={onHide}
                 onDragEnd={onDragEnd}
             >
-                {item.label}
+                <SvgIcon name={item.icon} config={item.iconConfig} size={30} />
+                <span>{item.label}</span>
             </div>
         )
     });
