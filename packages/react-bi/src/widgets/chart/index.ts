@@ -16,15 +16,16 @@ const icons = {
 
 const widgetConfig = {
     name: 'chart',
-    type: 'view',
-    categoryPath: '',
     label: '图表',
+    type: 'view',
+    component: Chart,
+    categoryPath: '',
     iconConfig: { paths: icons.chart},
     defaultWidth: 500,
     defaultHeight: 300,
     minWidth: 200,
     minHeight: 100,
-    component: Chart,
+    themes: {},
     configOptions: {
         types: [
             {name: 'line', label: '折线图'}
@@ -48,7 +49,7 @@ const widgetConfig = {
             label: '设置',
             iconConfig: { paths: icons.config},
             action: (model) => {
-                model.emit('config', true)
+                model.emit('configModal', true)
             }
         }
     ],

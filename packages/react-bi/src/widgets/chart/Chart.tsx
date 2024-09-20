@@ -1,8 +1,8 @@
 import React, {forwardRef, useState, useEffect} from 'react'
 import {Modal} from '@x-designer/react-components'
 import BiCharts from './charts'
-import {ChartDataSource} from './ChartDataSource'
-import {ChartConfig} from './ChartConfig'
+import {ChartDataSource} from './modal/ChartDataSource'
+import {ChartConfig} from './modal/ChartConfig'
 import './Chart.less'
 
 const Chart = (props) => {
@@ -10,7 +10,7 @@ const Chart = (props) => {
     const {model} = props;
 
     const [dataSourceModal, setDataSourceModal] = useState(false);
-    const [config, setConfig] = useState(false);
+    const [configModal, setConfigModal] = useState(false);
 
     const chartType = model.data.type;
     const ChartComp = chartType ? BiCharts[chartType] : () => (<div className="no-config-chart">请选择数据源和图表类型</div>);
@@ -20,8 +20,8 @@ const Chart = (props) => {
         model.on('dataSourceModal', (val) => {
             setDataSourceModal(val)
         });
-        model.on('config', (val) => {
-            setConfig(val)
+        model.on('configModal', (val) => {
+            setConfigModal(val)
         })
     }, [])
 
@@ -41,12 +41,12 @@ const Chart = (props) => {
                 )
             }
             {
-                config && (
+                configModal && (
                     <Modal
                         open
                         title="设置"
-                        onCancel={() => setConfig(false)}
-                        onSubmit={() => setConfig(false)}
+                        onCancel={() => setConfigModal(false)}
+                        onSubmit={() => setConfigModal(false)}
                     >
                         <ChartConfig />
                     </Modal>

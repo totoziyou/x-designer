@@ -1,7 +1,9 @@
 import React from 'react'
 import './Rankings.less'
 
-const Rankings = (props) => {
+export const Rankings = (props) => {
+
+    const {model} = props;
 
     return (
         <div className="xdbi-widget xdbi-widget-rankings">
@@ -9,13 +11,4 @@ const Rankings = (props) => {
         </div>
     )
 
-}
-
-export default {
-    name: 'rankings',
-    type: 'view',
-    label: '排行榜',
-    defaultWidth: 300,
-    defaultHeight: 400,
-    component: Rankings,
 }

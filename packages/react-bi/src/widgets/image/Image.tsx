@@ -1,7 +1,7 @@
 import React, {forwardRef, useState, useEffect} from 'react'
 import './Image.less'
 
-const Image = (props) => {
+export const Image = (props) => {
 
     return (
         <div className="xdbi-widget xdbi-widget-image">
@@ -9,14 +9,4 @@ const Image = (props) => {
         </div>
     )
 
-}
-
-export default {
-    name: 'image',
-    type: 'component',
-    categoryPath: '',
-    label: '图片',
-    defaultWidth: 200,
-    defaultHeight: 200,
-    component: Image,
 }
