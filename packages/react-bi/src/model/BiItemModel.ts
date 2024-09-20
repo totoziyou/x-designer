@@ -7,6 +7,9 @@ export default class BiItemModel {
     sourceItem: any;
     data: any;
 
+    themeName: string;
+    themeConfig: any;
+
     id: string;
     gridLayout: any;
     isLocked: boolean;
@@ -18,15 +21,17 @@ export default class BiItemModel {
     emit: Function;
 
     constructor(designer, itemData, isDummy = false) {
+        this._initEventBus();
         this.designer = designer;
         this.isDummy = isDummy;
         if(isDummy) {
             this._initDummy(itemData);
+            this._initTheme();
         }
         else {
             this._initData(itemData);
+            this._initTheme(itemData.theme, itemData.themeConfig);
         }
-        this._initEventBus();
     }
 
     _initData(itemData) {
@@ -48,6 +53,18 @@ export default class BiItemModel {
             x, y, w, h, minW, minH, maxW, maxH
         };
         this.data = data || {};
+    }
+
+    _initTheme(name?, config?) {
+        const themes = this.sourceItem.themes || {};
+        if(name) {
+            this.themeName = name;
+            this.themeConfig = config || themes[this.themeName] || themes.default || {};
+        }
+        else {
+            this.themeName = this.designer.themeName;
+            this.themeConfig = themes[this.themeName] || themes.default || {};
+        }
     }
 
     _initEventBus() {
@@ -82,6 +99,14 @@ export default class BiItemModel {
         else {
             return (x + w === cols) ? 'right' : 'free'
         }
+    }
+
+    getTheme() {
+        
+    }
+
+    setTheme(name, config) {
+        
     }
 
     setGridLayout(data) {
@@ -125,13 +150,18 @@ export default class BiItemModel {
     }
 
     toJson() {
-        return {
+        const data: any = {
             id: this.id,
             widget: this.sourceItem.name,
             gridLayout: this.gridLayout,
             isLocked: this.isLocked,
             data: this.data,
+            theme: this.themeName,
         }
+        if(this.themeName === 'custom') {
+            data.themeConfig = this.themeConfig;
+        }
+        return data;
     }
 
 }

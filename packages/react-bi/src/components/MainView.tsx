@@ -11,6 +11,7 @@ export const MainView = (props) => {
 
     const [layout, setLayout] = useState(model.layout);
     const [config, setConfig] = useState(model.config);
+    const [theme, setTheme] = useState(model.theme);
     
     useEffect(() => {
         model.on('itemsChanged', (item) => {
@@ -19,6 +20,9 @@ export const MainView = (props) => {
         })
         model.on('gridLayoutConfigChanged', newConfig => {
             setConfig(newConfig)
+        })
+        model.on('themeChange', () => {
+            setTheme(model.theme);
         })
     }, []);
 
@@ -42,6 +46,11 @@ export const MainView = (props) => {
 
     // console.info('render', layout);
 
+    const gridLayoutStyle = {
+        width: config.containerWidth,
+        background: theme.bg,
+    }
+
     return (
         <div className="xdbi-designer-main">
             <div className="xdbi-designer-absLayout">
@@ -49,7 +58,7 @@ export const MainView = (props) => {
             </div>
             <GridLayout
                 className="xdbi-designer-gridLayout"
-                style={{width: config.containerWidth}}
+                style={gridLayoutStyle}
                 layout={layout}
                 cols={config.cols}
                 rowHeight={config.rowHeight}

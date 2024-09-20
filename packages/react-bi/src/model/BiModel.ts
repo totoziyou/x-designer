@@ -1,9 +1,11 @@
 import {calculateUtils} from "react-grid-layout"
 import {EventBus} from '@x-designer/utils'
 import BiItemModel from "./BiItemModel";
+import {BiTheme} from './defines';
 
 type BiModelOptions = {
     theme?: string;
+    themeConfig?: any;
     gridLayoutConfig?: any;
     items: any[];
     getDataSource: Function;
@@ -20,6 +22,8 @@ const DefaultGridLayoutConfig = {
 
 export default class BiModel {
 
+    themeName: string;
+    themeConfig: any;
     gridLayoutConfig: any;
 
     eventBus: EventBus;
@@ -37,10 +41,22 @@ export default class BiModel {
     itemsMap: any;
 
     constructor(options:BiModelOptions) {
-        const {theme, gridLayoutConfig, getDataSource, items = []} = options;
+        const {theme, themeConfig, gridLayoutConfig, getDataSource, items = []} = options;
+        this._initEventBus();
+        this._initTheme(theme, themeConfig);
         this._initGridLayoutConfig(gridLayoutConfig);
         this._initItems(items);
-        this._initEventBus();
+    }
+
+    _initTheme(name, config) {
+        if(name === 'custom') {
+            this.themeName = 'custom';
+            this.themeConfig = config;
+        }
+        else {
+            this.themeName = name || 'light';
+            this.themeConfig = JSON.parse(JSON.stringify(BiTheme[this.themeName] || BiTheme.default));
+        }
     }
 
     _initGridLayoutConfig(config) {
@@ -76,6 +92,10 @@ export default class BiModel {
         });
     }
 
+    get theme() {
+        return this.themeConfig;
+    }
+
     setGridLayoutConfig(config) {
         this.gridLayoutConfig = {
             ...this.gridLayoutConfig,
@@ -93,6 +113,18 @@ export default class BiModel {
                 this.itemsMap[item.i].setGridLayout(item);
             })
         }
+    }
+
+    setTheme(name, config?) {
+        if(name === 'custom') {
+            this.themeName = 'custom';
+            this.themeConfig = config;
+        }
+        else {
+            this.themeName = name;
+            this.themeConfig = JSON.parse(JSON.stringify(BiTheme[this.themeName]));
+        }
+        this.emit('themeChange');
     }
 
     clearDrag() {
@@ -213,11 +245,15 @@ export default class BiModel {
 
     toJson() {
         const items = this.items.map(item => item.toJson());
-        return {
-            theme: 'light',
+        const data: any = {
             gridLayoutConfig: this.gridLayoutConfig,
             items,
+            theme: this.themeName
         }
+        if(this.themeName === 'custom') {
+            data.themeConfig = this.themeConfig;
+        }
+        return data;
     }
 
 }

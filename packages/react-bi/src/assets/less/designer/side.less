@@ -36,8 +36,8 @@
   top: 0;
   bottom: 0;
   background: #ffffff;
-  z-index: 200;
-  box-shadow: 3px 0px 5px -2px rgba(0, 0, 0, 0.08);
+  z-index: 300;
+  box-shadow: 3px 0 5px -2px rgba(0, 0, 0, 0.08);
   
   .ext-close-btn {
     position: absolute;
@@ -86,7 +86,49 @@
 }
 
 .xdbi-side-theme {
-
+  margin: 8px 16px;
+  .theme-group {
+    margin-bottom: 10px;
+  }
+  .theme-group-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+    font-size: 14px;
+    color: #4078FD;
+    fill: #4078FD;
+    background: #f8f8f8;
+    span {
+      margin-left: 6px;
+    }
+  }
+  .theme-group-body {
+    margin: 10px 0 10px 20px;
+  }
+  .theme-preset {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .theme-preset-item {
+    width: calc(50% - 4px);
+    height: 88px;
+    border: 1px solid #999999;
+    cursor: pointer;
+    
+    .preset-show {
+      margin: 4px;
+      height: 60px;
+      border: 1px solid #999999;
+    }
+    .preset-label {
+      height: 20px;
+      font-size: 13px;
+      text-align: center;
+    }
+  }
 }
 
 .xdbi-side-layout {
@@ -108,7 +150,7 @@
     }
   }
   .layout-group-body {
-    margin: 10px 0 10px 10px;
+    margin: 10px 0 10px 20px;
   }
 }
 
@@ -121,8 +163,10 @@
 
   .views-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     width: calc(50% - 6px);
     height: 60px;
     border: 1px solid #d9d9d9;
@@ -138,8 +182,10 @@
   
   .components-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     width: calc(50% - 6px);
     height: 60px;
     border: 1px solid #d9d9d9;
