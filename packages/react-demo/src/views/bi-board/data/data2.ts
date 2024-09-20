@@ -1,5 +1,4 @@
 const data = {
-    "theme": "light",
     "gridLayoutConfig": {
         "cols": 24,
         "rowHeight": 30,
@@ -12,7 +11,7 @@ const data = {
             4,
             4
         ],
-        "containerWidth": 1234
+        "containerWidth": 1584
     },
     "items": [
         {
@@ -31,7 +30,8 @@ const data = {
             "data": {
                 "type": null,
                 "datasource": null
-            }
+            },
+            "theme": "light"
         },
         {
             "id": "1c5888f5-6909-48ac-ac10-060edd42693a",
@@ -44,7 +44,8 @@ const data = {
                 "h": 7
             },
             "isLocked": false,
-            "data": {}
+            "data": {},
+            "theme": "light"
         },
         {
             "id": "3a1bf6a3-817e-4e87-8eca-094e604d5957",
@@ -57,7 +58,8 @@ const data = {
                 "h": 12
             },
             "isLocked": false,
-            "data": {}
+            "data": {},
+            "theme": "light"
         },
         {
             "id": "06b4667a-e2fb-441d-8c28-e0815c0da288",
@@ -70,9 +72,11 @@ const data = {
                 "h": 12
             },
             "isLocked": false,
-            "data": {}
+            "data": {},
+            "theme": "light"
         }
-    ]
+    ],
+    "theme": "light"
 }
 
 export default data;

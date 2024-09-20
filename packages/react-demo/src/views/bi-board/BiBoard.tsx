@@ -9,7 +9,7 @@ export const BiBoard = () => {
     
     const listItems = dataList.map(item => {
         return (
-            <div key={item.id} className='xbi-board-list-item' onClick={() => setData(item)}>
+            <div key={item.id} className='xbi-board-list-item' onClick={() => setData(JSON.parse(JSON.stringify(item)))}>
                 {item.label}
             </div>
         )
@@ -29,7 +29,7 @@ export const BiBoard = () => {
                 </div>
                 <div className="xbi-board-designer">
                     <BI.BiDesigner
-                        key={data.id}
+                        key={'xbi-' + data.id}
                         data={data.data}
                         getDataSource={getDataSource}
                     />
