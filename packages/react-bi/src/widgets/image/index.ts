@@ -1,4 +1,5 @@
-import {Image} from "./Image";
+import {Image} from "./Image"
+import {ImageConfig} from './ImageConfig'
 
 const icons = {
     image: [
@@ -15,7 +16,13 @@ const widgetConfig = {
     defaultWidth: 200,
     defaultHeight: 200,
     component: Image,
+    editComponent: ImageConfig,
+    editConfig: {
+        title: '图片设置',
+        width: 600
+    },
     themes: {},
+    data: {}
 }
 
 export default widgetConfig;
