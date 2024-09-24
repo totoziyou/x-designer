@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react'
 import BI from '@x-designer/react-bi'
-import {dataList, getDataSource} from "./data-utils";
+import {dataList, getDataSource, getData} from "./data-utils";
 import './BiBoard.less'
 
 export const BiBoard = () => {
@@ -32,6 +32,7 @@ export const BiBoard = () => {
                         key={'xbi-' + data.id}
                         data={data.data}
                         getDataSource={getDataSource}
+                        getData={getData}
                     />
                 </div>
             </div>

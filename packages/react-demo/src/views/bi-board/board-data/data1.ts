@@ -4,7 +4,7 @@ const data = {
         "cols": 24,
         "rowHeight": 30,
         "margin": [
-            0,
+            8,
             8
         ],
         "maxRows": "Infinity",
@@ -12,7 +12,7 @@ const data = {
             4,
             4
         ],
-        "containerWidth": 1584
+        "containerWidth": 1451
     },
     "items": [
         {
@@ -29,8 +29,20 @@ const data = {
             },
             "isLocked": false,
             "data": {
-                "type": null,
-                "datasource": null
+                "type": "bar",
+                "datasource": {
+                    "id": "d1"
+                },
+                "params": {
+                    "xField": {
+                        "name": "year",
+                        "title": "年份"
+                    },
+                    "yField": {
+                        "name": "amount",
+                        "title": "金额"
+                    }
+                }
             },
             "theme": "light"
         },
@@ -45,7 +57,13 @@ const data = {
                 "h": 12
             },
             "isLocked": false,
-            "data": {},
+            "data": {
+                "url": "http://img.netbian.com/file/2024/0618/small234207dJDho1718725327.jpg",
+                "position": "right bottom",
+                "cover": "cover",
+                "repeat": "no-repeat",
+                "bgColor": "#d4ddf2"
+            },
             "theme": "light"
         },
         {
