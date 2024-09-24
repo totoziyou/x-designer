@@ -1,7 +1,7 @@
 import React from 'react';
-import Bar from './Line'
+import Bar from './Bar'
 import Line from './Line'
-import Pie from './Line'
+import Pie from './Pie'
 
 const BiCharts = {
     bar: Bar,

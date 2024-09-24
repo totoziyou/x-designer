@@ -1,38 +1,45 @@
 import React from 'react';
-import { Line as AntdLine } from '@ant-design/charts';
+import { Column } from '@ant-design/charts';
 
 const Bar: React.FC = () => {
     const data = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
+        { month: '1', value: 1078 },
+        { month: '2', value: 1216 },
+        { month: '3', value: 758 },
+        { month: '4', value: 623 },
+        { month: '5', value: 319 },
+        { month: '6', value: 422 },
+        { month: '7', value: -4 },
+        { month: '8', value: -217 },
+        { month: '9', value: -358 },
+        { month: '10', value: 1513 },
+        { month: '11', value: 1388 },
+        { month: '12', value: 597 },
     ];
     const config = {
         data,
-        title: {
-            visible: true,
-            text: '带数据点的折线图',
-        },
-        xField: 'year',
+        xField: 'month',
         yField: 'value',
-        point: {
-            visible: true,
-            size: 5,
-            shape: 'diamond',
-            style: {
-                fill: 'white',
-                stroke: '#2593fc',
-                lineWidth: 2,
+        scale: {
+            y: {
+                domainMax: 2000,
+                domainMin: -1000,
             },
         },
+        axis: {
+            x: {
+                labelFormatter: (val) => `${val} 月`,
+            },
+        },
+        annotations: [
+            {
+                type: 'rangeX',
+                data: [{ month: ['7', '9'] }],
+                xField: 'month',
+            },
+        ],
     };
-    return <AntdLine {...config} />;
+    return <Column {...config} />;
 };
 
 export default Bar;
