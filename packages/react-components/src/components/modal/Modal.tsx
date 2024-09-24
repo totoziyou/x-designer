@@ -1,26 +1,20 @@
 import React from 'react'
-import { Button, Modal as AntdModal } from 'antd';
+import { Modal as AntdModal } from 'antd'
+import './Modal.less'
 
 export const Modal = (props) => {
 
-    const {open, onCancel, onSubmit, children, title} = props;
+    const {centered, maskClosable, ...otherProps} = props;
 
     return (
         <AntdModal
-            open={open}
-            title={title}
-            onCancel={onCancel}
-            footer={[
-                <Button key="back" onClick={onCancel}>
-                    取消
-                </Button>,
-                <Button key="submit" type="primary" onClick={onSubmit}>
-                    确定
-                </Button>
-            ]}
-        >
-            {children}
-        </AntdModal>
+            className="xdc-modal"
+            okText="确定"
+            cancelText="取消"
+            centered
+            maskClosable={false}
+            {...otherProps}
+        />
     )
 
 }
