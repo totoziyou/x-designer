@@ -1,6 +1,7 @@
 import React, {forwardRef, useState, useEffect} from 'react'
 import GridLayout from "react-grid-layout"
 import {DragMask} from './DragMask'
+import {EditorModal} from './EditorModal'
 import {Item} from './Item'
 import '../../node_modules/react-grid-layout/css/styles.css'
 // import '../../node_modules/react-resizable/css/styles.css'
@@ -74,6 +75,7 @@ export const MainView = (props) => {
                 {items}
             </GridLayout>
             <DragMask model={model} />
+            <EditorModal model={model} />
         </div>
     )
 

@@ -218,6 +218,14 @@ export default class BiModel {
         this.emit('itemsChanged', {type: 'move', data: [item]});
     }
 
+    editItem(item) {
+        this.emit('editItem', item);
+    }
+
+    copyItem(item) {
+
+    }
+
     removeItem(itemId) {
         const idx = this.items.findIndex(item => item.id === itemId);
         if(idx > -1) {

@@ -90,6 +90,14 @@ export default class BiItemModel {
         return this.sourceItem.extMenus || [];
     }
 
+    getEditor() {
+        return this.sourceItem.editComponent;
+    }
+
+    getEditConfig() {
+        return this.sourceItem.editConfig || {width: 800};
+    }
+
     getGridPos() {
         const {cols} = this.designer.gridLayoutConfig;
         const {x, w} = this.gridLayout;
@@ -107,6 +115,11 @@ export default class BiItemModel {
 
     setTheme(name, config) {
         
+    }
+
+    setData(newData) {
+        this.data = newData;
+        this.emit('dataChange', this.data);
     }
 
     setGridLayout(data) {
@@ -127,6 +140,10 @@ export default class BiItemModel {
         if(this.sourceItem.afterDrop) {
             this.sourceItem.afterDrop(this);
         }
+    }
+
+    edit() {
+        this.designer.editItem(this);
     }
 
     copy() {

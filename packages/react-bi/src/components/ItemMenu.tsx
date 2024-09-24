@@ -20,6 +20,10 @@ export const ItemMenu = (props) => {
         return false;
     }
 
+    const onEdit = (evt) => {
+        model.edit();
+    }
+
     const onCopy = (evt) => {
         model.copy();
     }
@@ -41,6 +45,9 @@ export const ItemMenu = (props) => {
 
     return (
         <div className={menuClass}>
+            <div className="menu-item" onClick={onEdit} onMouseDown={onMouseDown}>
+                <SvgIcon name="edit" />
+            </div>
             <div className="menu-item" onClick={onCopy} onMouseDown={onMouseDown}>
                 <SvgIcon name="copy" />
             </div>
