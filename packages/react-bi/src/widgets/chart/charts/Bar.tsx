@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line as AntdLine } from '@ant-design/charts';
 
-const Pie: React.FC = () => {
+const Bar: React.FC = () => {
     const data = [
         { year: '1991', value: 3 },
         { year: '1992', value: 4 },
@@ -35,4 +35,4 @@ const Pie: React.FC = () => {
     return <AntdLine {...config} />;
 };
 
-export default Pie;
+export default Bar;
