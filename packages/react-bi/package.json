@@ -9,7 +9,8 @@
   "dependencies": {
     "react-grid-layout": "^1.4.4",
     "echarts": "^5.5.1",
-    "@ant-design/charts": "^2.2.1"
+    "@ant-design/charts": "^2.2.1",
+    "react-sortablejs": "^6.1.4"
   },
   "peerDependencies": {
     "react": "^18.3.1",
