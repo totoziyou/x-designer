@@ -25,15 +25,15 @@ export const EditorModal = (props) => {
 
     return (
         <Modal
+            className="xdbi-designer-editorModal"
             open={isOpen}
-            title="图片设置"
+            title={editConfig.title || '设置'}
             width={editConfig.width}
+            fullScreen={editConfig.fullScreen}
             footer={null}
             onCancel={cancelModal}
         >
-            <div className="xdbi-widget-editor-modal">
-                { itemModel && <WidgetEditor model={itemModel} /> }
-            </div>
+            { itemModel && <WidgetEditor model={itemModel} /> }
         </Modal>
     )
 
