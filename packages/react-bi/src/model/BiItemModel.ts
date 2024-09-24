@@ -86,6 +86,12 @@ export default class BiItemModel {
         }
     }
 
+    getDataSource() {
+        const widget = this.sourceItem.name;
+        const params = this.data.datasource?.params || {};
+        return this.designer.getDataSource(widget, params);
+    }
+
     getExtMenus() {
         return this.sourceItem.extMenus || [];
     }

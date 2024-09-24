@@ -31,6 +31,7 @@ export const EditorModal = (props) => {
             width={editConfig.width}
             fullScreen={editConfig.fullScreen}
             footer={null}
+            destroyOnClose
             onCancel={cancelModal}
         >
             { itemModel && <WidgetEditor model={itemModel} /> }

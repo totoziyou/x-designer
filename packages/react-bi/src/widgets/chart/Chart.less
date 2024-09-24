@@ -53,8 +53,107 @@
     border-bottom: 2px solid #1677ff;
   }
 
+  .chartConfig-datasource {
+    display: flex;
+    flex-direction: column;
+    
+    .chartConfig-body {
+      flex: 1;
+      margin: 16px;
+    }
+    .ds-selector {
+    }
+    .ds-fields {
+
+    }
+    .ds-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 10px 0;
+      padding-left: 4px;
+      height: 36px;
+      color: #1677ff;
+      border-bottom: 1px solid #dddddd;
+      svg {
+        fill: #1677ff;
+        margin-right: 4px;
+      }
+    }
+    .ds-field-list {
+      margin-left: 20px;
+    }
+    .ds-field-item {
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+
+      }
+    }
+    .ds_dimensions {
+      .ds-field-item:hover {
+        background: #d2e3ff;
+      }
+    }
+    .ds_metrics {
+      .ds-field-item:hover {
+        background: #d5e9c4;
+      }
+    }
+  }
+
   .chartConfig-params {
     min-height: 140px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    
+    .chartConfig-body {
+      padding: 10px 20px 20px;
+    }
+    .params-row {
+      display: flex;
+      flex-direction: row;
+      margin-top: 6px;
+      align-items: center;
+    }
+    .params-label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 80px;
+      height: 30px;
+      //background: #d9e3f0;
+    }
+    .params-container {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+      padding: 0 4px;
+      height: 36px;
+      background: #ffffff;
+      border: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+    .params-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0 4px 0 10px;
+      height: 28px;
+      font-size: 13px;
+      background: #d9e3f0;
+      border-radius: 4px;
+      cursor: pointer;
+      svg {
+        margin-left: 6px;
+        fill: rgba(0, 0, 0, 0.1);
+      }
+      &:hover svg {
+        fill: rgba(0, 0, 0, 0.5);
+      }
+    }
   }
 
   .chartConfig-show {

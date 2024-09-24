@@ -25,6 +25,7 @@ export default class BiModel {
     themeName: string;
     themeConfig: any;
     gridLayoutConfig: any;
+    getDataSource: Function;
 
     eventBus: EventBus;
     on: Function;
@@ -43,6 +44,7 @@ export default class BiModel {
     constructor(options:BiModelOptions) {
         const {theme, themeConfig, gridLayoutConfig, getDataSource, items = []} = options;
         this._initEventBus();
+        this.getDataSource = getDataSource;
         this._initTheme(theme, themeConfig);
         this._initGridLayoutConfig(gridLayoutConfig);
         this._initItems(items);

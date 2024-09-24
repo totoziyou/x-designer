@@ -25,9 +25,9 @@ export const ChartConfig = (props) => {
 
     return (
         <div className="xdbi-widget-chartConfig">
-            <ChartDataSource />
+            <ChartDataSource model={model} />
             <div className="chartConfig-main">
-                <ChartParams type={data.type} />
+                <ChartParams type={data.type} params={data.params} onChange={(val) => onChange('params', val)}/>
                 <div className="chartConfig-show">
                     <div className="chartConfig-header">
                         <div className="chartConfig-label">图表展示</div>
