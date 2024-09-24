@@ -1,4 +1,6 @@
 import Chart from './Chart'
+import {ChartConfig} from './config/ChartConfig'
+import './icons'
 
 const icons = {
     chart: [
@@ -25,6 +27,12 @@ const widgetConfig = {
     defaultHeight: 300,
     minWidth: 200,
     minHeight: 100,
+    editComponent: ChartConfig,
+    editConfig: {
+        title: '图表设置',
+        fullScreen: true,
+        width: 800
+    },
     themes: {},
     configOptions: {
         types: [
@@ -35,26 +43,27 @@ const widgetConfig = {
         type: null,
         datasource: null,
     },
-    extMenus: [
-        {
-            name: 'datasource',
-            label: '编辑数据源',
-            iconConfig: { paths: icons.datesource},
-            action: (model) => {
-                model.emit('dataSourceModal', true)
-            }
-        },
-        {
-            name: 'config',
-            label: '设置',
-            iconConfig: { paths: icons.config},
-            action: (model) => {
-                model.emit('configModal', true)
-            }
-        }
-    ],
+    // extMenus: [
+    //     {
+    //         name: 'datasource',
+    //         label: '编辑数据源',
+    //         iconConfig: { paths: icons.datesource},
+    //         action: (model) => {
+    //             model.emit('dataSourceModal', true)
+    //         }
+    //     },
+    //     {
+    //         name: 'config',
+    //         label: '设置',
+    //         iconName: 'bi_widget_config',
+    //         action: (model) => {
+    //             model.emit('configModal', true)
+    //         }
+    //     }
+    // ],
     afterDrop: (model) => {
-        model.emit('dataSourceModal', true)
+        model.edit();
+        // model.emit('dataSourceModal', true)
     }
 }
 
