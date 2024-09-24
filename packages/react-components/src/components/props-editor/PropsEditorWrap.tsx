@@ -2,8 +2,9 @@ import React from 'react'
 
 export const PropsEditorWrap = (props) => {
 
-    const {title, className, children} = props;
+    const {title, className, cellFull, children} = props;
     const warpClass = ['xdc-props-editor', className].join(' ');
+    const cellClass = `editor-cell ${cellFull ? 'editor-cell-full' : ''}`
 
     return (
         <div className={warpClass}>
@@ -11,7 +12,7 @@ export const PropsEditorWrap = (props) => {
                 <div className="editor-label">
                     {title}
                 </div>
-                <div className="editor-cell">
+                <div className={cellClass}>
                     {children}
                 </div>
             </div>

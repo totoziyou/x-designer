@@ -14,6 +14,9 @@
     min-width: 56px;
     line-height: 32px;
   }
+  .editor-cell-full {
+    flex: 1;
+  }
 }
 
 .xdc-align-props-editor {
@@ -57,5 +60,59 @@
   .editor-cell {
     width: 100px;
     overflow: hidden;
+  }
+}
+
+.xdc-rectAlign-props-editor {
+  .rectAlign-container {
+    position: relative;
+    padding-top: 20px;
+    padding-right: 20px;
+  }
+  .rectAlign-blocks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 121px;
+    height: 121px;
+    border-top: 1px solid #999999;
+    border-left: 1px solid #999999;
+  }
+  .rectAlign-x-labels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    div {
+      flex: 1;
+      color: #999999;
+      text-align: center;
+    }
+  }
+  .rectAlign-y-labels {
+    position: absolute;
+    top: 20px;
+    left: 125px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    div {
+      flex: 1;
+      color: #999999;
+      line-height: 40px;
+    }
+  }
+  .rectAlgin-block {
+    width: 40px;
+    height: 40px;
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    cursor: pointer;
+  }
+  .rectAlgin-block-selected {
+    background: #1677ff;
   }
 }
