@@ -13,8 +13,31 @@
       top: 6px;
       right: 8px;
     }
+    .ant-modal-header {
+      margin-bottom: 0;
+    }
     .ant-modal-body {
       padding: 20px;
     }
+  }
+}
+
+.xdc-modal-fullScreen {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  .ant-modal-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .ant-modal-body {
+    flex: 1;
   }
 }

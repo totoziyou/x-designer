@@ -4,15 +4,16 @@ import './Modal.less'
 
 export const Modal = (props) => {
 
-    const {centered, maskClosable, ...otherProps} = props;
+    const {className = '', centered, maskClosable, fullScreen, ...otherProps} = props;
+    const mClass = `xdc-modal ${fullScreen ? 'xdc-modal-fullScreen' : ''} ${className}`
 
     return (
         <AntdModal
-            className="xdc-modal"
+            className={mClass}
             okText="确定"
             cancelText="取消"
-            centered
-            maskClosable={false}
+            centered={centered || true}
+            maskClosable={maskClosable || false}
             {...otherProps}
         />
     )
